@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h1 class="mb-4">Notice List</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (notices.length > 0) { %>
+                <% notices.forEach(notice => { %>
+                    <tr>
+                        <td><a href="<%= notice.path %>" target="_blank"><%= notice.name %> - Click here to open the notice</a></td>
+                        <td><%= new Date(notice.date).toLocaleDateString() + " " + new Date(notice.date).toLocaleTimeString() %></td>
+                        <td>
+                            <form action="/admin/delete-notice/<%= notice._id %>/<%= start %>/<%= end %>/<%= encodeURIComponent(notice.path) %>" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="3">No notices available.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between mt-4">
+        <% if (prevStart) { %>
+            <button class="btn btn-secondary" onclick="window.location.href='/admin/getNoticeList/?start=<%= prevStart %>&end=<%= prevEnd %>'">Previous</button>
+        <% } else { %>
+            <button class="btn btn-secondary" disabled>Previous</button>
+        <% } %>
+        <button class="btn btn-primary" onclick="window.location.href='/admin/getNoticeList/?start=<%= nextStart %>&end=<%= nextEnd %>'" <%= notices.length < 10 ? 'disabled' : '' %>>Next</button>
+    </div>
+</div>

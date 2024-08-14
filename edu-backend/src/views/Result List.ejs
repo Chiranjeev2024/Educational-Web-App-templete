@@ -1,0 +1,27 @@
+<div class="container">
+    <h2 class="mt-5">Uploaded Results</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Class Name</th>
+                <th>Exam Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% results.forEach(result => { %>
+            <tr>
+                <td><%= result.className %></td>
+                <td><%= result.examName %></td>
+                <td>
+                    <a
+                        href="/get-result/<%= result._id %>"
+                        class="btn btn-info"
+                        >View</a
+                    >
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>

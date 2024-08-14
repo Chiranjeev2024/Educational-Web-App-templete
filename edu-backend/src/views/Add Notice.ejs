@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <h1 class="mb-4">Add Notice</h1>
+    <form
+        action="/admin/add-notice"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+        <div class="mb-3">
+            <label for="name" class="form-label">Notice Name</label>
+            <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="type" class="form-label">Notice Type</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="notice">Notice</option>
+                <option value="announcement">Announcement</option>
+                <option value="result">Result</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="noticeFile" class="form-label">Upload PDF</label>
+            <input
+                class="form-control"
+                type="file"
+                id="noticeFile"
+                name="noticeFile"
+                accept="application/pdf"
+                required
+            />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
